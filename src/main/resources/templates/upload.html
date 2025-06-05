@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload File - Secure Cloud Storage</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Secure File Upload</h1>
+    </header>
+
+    <div th:if="${message}" th:class="${messageType == 'SUCCESS'} ? 'message success' : 'message error'"
+         th:text="${message}"></div>
+
+    <form id="uploadForm" action="/api/files/upload" method="post" enctype="multipart/form-data">
+        <div>
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" required>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+            <label for="phone">Phone Number (10 digits):</label>
+            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" title="Phone number must be 10 digits" required>
+        </div>
+        <div>
+            <label for="purpose">Purpose of Storage:</label>
+            <textarea id="purpose" name="purpose" rows="3" required></textarea>
+        </div>
+        <div>
+            <label>Access Rights:</label>
+            <label><input type="radio" name="accessRights" value="Read" required> Read</label>
+            <label><input type="radio" name="accessRights" value="Write" checked> Write</label>
+        </div>
+        <div>
+            <label for="fileInput">File Upload:</label>
+            <input type="file" id="fileInput" name="file" required>
+            <div id="filePreview">
+                <p id="fileNameDisplay"></p>
+                <p id="fileSizeDisplay"></p>
+            </div>
+        </div>
+        <div>
+            <label>Cloud Provider Selection:</label>
+            <div>
+                <label><input type="checkbox" name="cloudProviders" value="AWS" checked> AWS</label>
+                <label><input type="checkbox" name="cloudProviders" value="Azure" checked> Azure</label>
+                <label><input type="checkbox" name="cloudProviders" value="GCP" checked> GCP</label>
+                <!-- <label><input type="checkbox" name="cloudProviders" value="IBM"> IBM Cloud</label> -->
+            </div>
+        </div>
+        <button type="submit" id="submitButton">Upload File</button>
+    </form>
+
+    <hr>
+
+    <section id="fileListSection">
+        <h2>Your Uploaded Files</h2>
+        <div>
+            <label for="userEmailForFiles">Enter your email to see your files:</label>
+            <input type="email" id="userEmailForFiles" placeholder="your.email@example.com">
+            <button id="fetchFilesButton">Fetch My Files</button>
+        </div>
+        <div id="fileListContainer">
+            <!-- Files will be listed here -->
+        </div>
+        <div id="fileListMessage" class="message" style="display: none;"></div>
+    </section>
+
+</div>
+<script th:src="@{/js/upload.js}"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+com\cloudstorage\model\User.class
+com\cloudstorage\model\FileMetadata.class
+com\cloudstorage\repository\UserRepository.class
+com\cloudstorage\repository\FileMetadataRepository.class
+com\cloudstorage\SecureCloudStorageApplication.class
+com\cloudstorage\model\CloudProvider.class
+com\cloudstorage\controller\FileController.class
+com\cloudstorage\repository\CloudProviderRepository.class
+com\cloudstorage\controller\PageController.class
+com\cloudstorage\util\AESUtils.class
+com\cloudstorage\controller\UserController.class
+com\cloudstorage\config\SwaggerConfig.class
+com\cloudstorage\service\FileService.class
